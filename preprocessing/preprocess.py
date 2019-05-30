@@ -9,8 +9,7 @@ DIR = os.path.dirname(os.path.abspath(__file__))
 
 def load_data():
 	mat = pd.read_csv('{}/../data/GeneticAdjacencyMatrix.csv'.format(DIR))
-	mat.drop([0], axis=0, inplace=True) # drop NaN row
-	mat.drop(columns=['Unnamed: 0', 'LOC100190510'], inplace=True) # drop NaN col
+	mat.drop(columns=['Unnamed: 0'], inplace=True) # drop name col
 	genetic = np.asarray(mat)
 	return genetic
 
@@ -31,7 +30,7 @@ def get_graph(data):
 # input data is numpy array of adj matrix
 # default threshold is mean weight of all entries
 
-def get_threshold_graph(data, threshold = 0.0031046160717961837):
+def get_threshold_graph(data, threshold = 0.007243366440534859):
 	data = data > threshold # turn into array of 1s and 0s
 	G = nx.from_numpy_matrix(data)
 	return(G)
