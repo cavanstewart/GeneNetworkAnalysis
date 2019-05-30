@@ -1,12 +1,14 @@
 import pandas as pd
 import numpy as np 
 import networkx as nx 
+import os
 
+DIR = os.path.dirname(os.path.abspath(__file__))
 
 # load adj matrix data into numpy array
 
 def load_data():
-	mat = pd.read_csv('../data/GeneticAdjacencyMatrix.csv')
+	mat = pd.read_csv('{}/../data/GeneticAdjacencyMatrix.csv'.format(DIR))
 	mat.drop([0], axis=0, inplace=True) # drop NaN row
 	mat.drop(columns=['Unnamed: 0', 'LOC100190510'], inplace=True) # drop NaN col
 	genetic = np.asarray(mat)
